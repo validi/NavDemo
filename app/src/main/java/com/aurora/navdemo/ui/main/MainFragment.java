@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.aurora.navdemo.R;
 
@@ -38,10 +39,12 @@ public class MainFragment extends Fragment {
 
 
         Button mainButton=getView().findViewById(R.id.mainButton);
+        EditText edtName=getView().findViewById(R.id.edtName);
+
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(MainFragmentDirections.mainToSecond());
+                Navigation.findNavController(view).navigate(MainFragmentDirections.mainToSecond().setUserName(edtName.getText().toString()));
             }
         });
 
