@@ -9,7 +9,11 @@
         android:id="@+id/mainFragment"
         android:name="com.aurora.navdemo.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/mainToSecond"
+            app:destination="@id/secondFragment" />
+    </fragment>
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.aurora.navdemo.SecondFragment"

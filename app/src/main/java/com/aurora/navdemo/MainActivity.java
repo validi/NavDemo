@@ -1,12 +1,12 @@
 package com.aurora.navdemo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.net.Uri;
 import android.os.Bundle;
 
-import com.aurora.navdemo.ui.main.MainFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SecondFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,5 +17,13 @@ public class MainActivity extends AppCompatActivity {
 //                    .replace(R.id.container, MainFragment.newInstance())
 //                    .commitNow();
 //        }
+
+
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
