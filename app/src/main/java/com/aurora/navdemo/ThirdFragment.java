@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -12,14 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.aurora.navdemo.ui.main.MainFragmentDirections;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SecondFragment#newInstance} factory method to
+ * Use the {@link ThirdFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SecondFragment extends Fragment {
+public class ThirdFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,10 +31,10 @@ public class SecondFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private OnFragmentInteractionListener mListener;
 
+    OnFragmentInteractionListener mListener;
 
-    public SecondFragment() {
+    public ThirdFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +44,11 @@ public class SecondFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
+     * @return A new instance of fragment ThirdFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SecondFragment newInstance(String param1, String param2) {
-        SecondFragment fragment = new SecondFragment();
+    public static ThirdFragment newInstance(String param1, String param2) {
+        ThirdFragment fragment = new ThirdFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,33 +66,24 @@ public class SecondFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        SecondFragmentArgs secondFragmentArgs = SecondFragmentArgs.fromBundle(getArguments());
-        String userName = secondFragmentArgs.getUserName();
-
-        TextView textView = getView().findViewById(R.id.txtName);
-        textView.setText(userName);
-
-
-        Button btnNextFragment=getView().findViewById(R.id.btnNextFragment);
-
-        btnNextFragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(SecondFragmentDirections.secondToThird());
-            }
-        });
-
-    }
-
-   
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_third, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+      Button btnThirdToMain =getView().findViewById(R.id.btnThirdToMain);
+        btnThirdToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(ThirdFragmentDirections.actionThirdFragmentToMainFragment());
+            }
+        });
+
     }
 
     public interface OnFragmentInteractionListener {
@@ -98,6 +91,7 @@ public class SecondFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
     public void onButtonPressed(Uri uri) {
+
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -105,8 +99,8 @@ public class SecondFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof SecondFragment.OnFragmentInteractionListener) {
+            mListener = (ThirdFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -117,5 +111,4 @@ public class SecondFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 }

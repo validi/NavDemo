@@ -22,6 +22,22 @@
         <argument
             android:name="userName"
             app:argType="string"
+
             android:defaultValue="no Name Added" />
+        <action
+            android:id="@+id/second_to_third"
+            app:destination="@id/thirdFragment"
+            app:popUpTo="@id/secondFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.aurora.navdemo.ThirdFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" >
+        <action
+            android:id="@+id/action_thirdFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>
